@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000');
+const socket = io('http://localhost:8000')//io('http://192.168.0.122:8000')//io('http://localhost:8000');
 
 //get DOM element in respctive js Variable
 const form = document.getElementById('send-container');
@@ -25,8 +25,13 @@ socket.emit('new-user-joined', name);
 
 //if the new user joins, receive his/her name from the server
 socket.on('user-joined', name => {
-    console.log(name, "namenamename")
-    append(`${name} joined the chat`, 'right')
+    console.log(name, "name 11");
+    if (name !== null) {
+        append(`${name} joined the chat`, 'right')
+    }
+    else {
+        append(`No one online now`, 'right')
+    }
 });
 
 //if server send a message, receive it.
@@ -37,7 +42,14 @@ socket.on('receive', data => {
 
 //if the user leaves the chat, append the info to the container
 socket.on('left', name => {
-    append(`${name} left the chat`, 'right  ')
+    console.log(name, "name 22");
+
+    if (name !== null) {
+        append(`${name} left the chat`, 'right  ')
+    }
+    else {
+        append(`No one online now`, 'right')
+    }
 });
 
 //if the form gets submitted, send server the message

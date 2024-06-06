@@ -33,5 +33,4 @@ io.on('connection', socket => {
         delete users[socket.id];
     });
 
-
 });
